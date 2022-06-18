@@ -1,0 +1,6 @@
+.att-box{
+    display: flex;
+}
+.att-box-key{
+    padding-right: 10px;
+}
