@@ -11,7 +11,7 @@ import datetime
 
 # today = "{}".format(datetime.date.today())
 today = '2022-05-01'
-client=MongoClient("<DATABASE-URL>")
+client=MongoClient("mongodb://localhost:27017/")
 collection = client['test']['test-db']
 data = []
 for i in collection.find():
@@ -29,7 +29,7 @@ if today not in data[0]['date-key']:
 else:
     flag = 1
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 path = 'Images'
 images = [] 
 classNames = []
@@ -53,16 +53,16 @@ def findEncoding(images):
     return encodelist
 
 
-# encodelistknown = findEncoding(images)
+encodelistknown = findEncoding(images)
 
-# pickle_out = open("encodelist.pickle","wb")
-# pickle.dump(encodelistknown, pickle_out)
-# pickle_out.close()
-# print("Encoding Complete")
+pickle_out = open("encodelist.pickle","wb")
+pickle.dump(encodelistknown, pickle_out)
+pickle_out.close()
+print("Encoding Complete")
 
-open_file = open("encodelist.pickle", "rb")
-encodelistknown = pickle.load(open_file)
-open_file.close()
+# open_file = open("encodelist.pickle", "rb")
+# encodelistknown = pickle.load(open_file)
+# open_file.close()
 
 # ret, img = cap.read()
 while True:
